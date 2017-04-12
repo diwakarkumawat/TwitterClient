@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BDBOAuth1Manager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,6 +42,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        print(url.description)
+        
+        let twitterClient = BDBOAuth1SessionManager(baseURL: NSURL(string: "https://api.twitter.com")! as URL!, consumerKey: "7ecFpPfPSBNWBXUN5FJcYSsuM", consumerSecret: "eyKr9IeYmpRrGBMivlnd66Cvy0mESsGJt8DURBJlR2ZTdSfU3f")
+        
+        let requestToken = BDBOAuth1Credential(queryString: url.query)
+        
+        twitterClient?.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (requestToken: BDBOAuth1Credential?) -> Void in
+            print("got access token")
+        }, failure: { (error) in
+            print(error)
+        })
+        
+        
+/*
+         twitterClient?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: NSURL(string: "twitterdemo://oauth") as! URL, scope: nil, success: { (requestToken: BDBOAuth1Credential?) -> Void in
+         print("got a token")
+         print(requestToken?.token)
+         //let url = NSURL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken?.token)") as! URL
+         let token = requestToken?.token!
+         let urlString = "https://api.twitter.com/oauth/authorize?oauth_token=\(token!)"
+         print(urlString)
+         let url = NSURL(string: urlString)!
+         print(url)
+         
+         UIApplication.shared.openURL(url as URL)
+         
+         }, failure: { (error)  in
+         print(error)
+         })
+
+ */
+        
+        
+        
+        
+        
+        return true
+    }
 
 }
 
