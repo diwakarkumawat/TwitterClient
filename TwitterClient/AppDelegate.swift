@@ -51,32 +51,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         twitterClient?.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (requestToken: BDBOAuth1Credential?) -> Void in
             print("got access token")
+            
+            twitterClient?.get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response:Any?) in
+                print("account: \(response)")
+                let userDict = response as? NSDictionary
+                
+                let user = User(dict: userDict!)
+                
+                print("name: \(user.name)")
+                print("screenname: \(user.screenName)")
+                print("profileUrl: \(user.profileImageUrl)")
+                print("description: \(user.tagline)")
+                
+            }, failure: { (task:URLSessionDataTask?, error:Error) in
+                print(error)
+            })
+            
         }, failure: { (error) in
             print(error)
         })
         
-        
-/*
-         twitterClient?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: NSURL(string: "twitterdemo://oauth") as! URL, scope: nil, success: { (requestToken: BDBOAuth1Credential?) -> Void in
-         print("got a token")
-         print(requestToken?.token)
-         //let url = NSURL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken?.token)") as! URL
-         let token = requestToken?.token!
-         let urlString = "https://api.twitter.com/oauth/authorize?oauth_token=\(token!)"
-         print(urlString)
-         let url = NSURL(string: urlString)!
-         print(url)
-         
-         UIApplication.shared.openURL(url as URL)
-         
-         }, failure: { (error)  in
-         print(error)
-         })
 
- */
-        
-        
-        
+        twitterClient?.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (requestToken: BDBOAuth1Credential?) -> Void in
+            print("got access token")
+            
+            twitterClient?.get("1.1/statuses/home_timeline.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response:Any?) in
+                let dicts = response as! [NSDictionary]
+                
+                let tweets = Tweet.tweetsWithArray(dicts: dicts)
+                
+                for tweet in tweets {
+                    print("\(tweet.text!)")
+                }
+                
+            }, failure: { (task:URLSessionDataTask?, error:Error) in
+                print(error)
+            })
+            
+        }, failure: { (error) in
+            print(error)
+        })
         
         
         return true
