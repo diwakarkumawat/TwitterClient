@@ -31,19 +31,32 @@ class TwitterClient: BDBOAuth1SessionManager {
             }, failure: { (error: Error) in
                 print(error)
             })
-            
-            
             client?.currentAccount()
             */
             
-            self.loginSuccess?()
-            
+            /*
+             TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
+             for tweet in tweets {
+             print(tweet.text!)
+             }
+             self.tweets = tweets
+             }, failure: { (error: Error) in
+             print(error)
+             })
+ 
+            */
+
+            self.currentAccount(success: { (user) in
+                User.currentUser = user
+                self.loginSuccess?()
+            }, failure: { (error: Error?) in
+                self.loginFailure?(error!)
+            })
             
         }, failure: { (error: Error?) -> Void in
             print(error)
             self.loginFailure?(error!)
         })
-        
     }
     
     func login(success: @escaping () -> (), failure: @escaping (Error) -> ()) {
@@ -86,12 +99,13 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
-    func currentAccount() {
+    func currentAccount(success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
         TwitterClient.sharedInstance?.get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response:Any?) in
             print("account: \(response)")
             let userDict = response as? NSDictionary
             
             let user = User(dict: userDict!)
+            success(user)
             
             print("name: \(user.name)")
             print("screenname: \(user.screenName)")
@@ -100,6 +114,7 @@ class TwitterClient: BDBOAuth1SessionManager {
             
         }, failure: { (task:URLSessionDataTask?, error:Error) in
             print(error)
+            failure(error)
         })
         
     }
