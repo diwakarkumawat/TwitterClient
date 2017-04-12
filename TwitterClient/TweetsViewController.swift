@@ -12,12 +12,17 @@ class TweetsViewController: UIViewController {
 
     var tweets: [Tweet]!
     
+    
+    @IBAction func onLogout(_ sender: Any) {
+        TwitterClient.sharedInstance?.logout()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
             for tweet in tweets {
-                print(tweet.text!)
+                //print(tweet.text!)
             }
             self.tweets = tweets
         }, failure: { (error: Error) in

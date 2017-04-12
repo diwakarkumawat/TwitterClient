@@ -11,6 +11,8 @@ import BDBOAuth1Manager
 
 class TwitterClient: BDBOAuth1SessionManager {
 
+    static let USER_LOGOUT = "UserLogOut"
+    
     static let sharedInstance = TwitterClient(baseURL: NSURL(string: "https://api.twitter.com")! as URL!, consumerKey: "7ecFpPfPSBNWBXUN5FJcYSsuM", consumerSecret: "eyKr9IeYmpRrGBMivlnd66Cvy0mESsGJt8DURBJlR2ZTdSfU3f")
     
     var loginSuccess: (() -> ())?
@@ -59,6 +61,12 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    func logout() {
+        User.currentUser = nil
+        deauthorize()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: TwitterClient.USER_LOGOUT), object: nil)
+    }
+    
     func login(success: @escaping () -> (), failure: @escaping (Error) -> ()) {
         
         loginSuccess = success
@@ -67,7 +75,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         deauthorize()
         fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: NSURL(string: "twitterdemo://oauth") as! URL, scope: nil, success: { (requestToken: BDBOAuth1Credential?) -> Void in
             print("got a token")
-            print(requestToken?.token)
+            //print(requestToken?.token)
             //let url = NSURL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken?.token)") as! URL
             let token = requestToken?.token!
             let urlString = "https://api.twitter.com/oauth/authorize?oauth_token=\(token!)"
@@ -101,7 +109,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     func currentAccount(success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
         TwitterClient.sharedInstance?.get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response:Any?) in
-            print("account: \(response)")
+            //print("account: \(response)")
             let userDict = response as? NSDictionary
             
             let user = User(dict: userDict!)

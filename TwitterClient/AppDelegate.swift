@@ -21,8 +21,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if User.currentUser != nil {
             // go to tweets directly
             print("User already logged in")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+            window?.rootViewController = vc
         } else {
             print("No User LoggedIn")
+        }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: TwitterClient.USER_LOGOUT), object: nil, queue: OperationQueue.main) { (notification: Notification) in
+            print("Log Out")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateInitialViewController()
+            self.window?.rootViewController = vc
         }
         
         return true
