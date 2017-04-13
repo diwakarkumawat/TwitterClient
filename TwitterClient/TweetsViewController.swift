@@ -13,6 +13,9 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
 
     var tweets: [Tweet]!
     
+    var refreshControl: UIRefreshControl!
+    
+    
     @IBOutlet weak var tweetTableView: UITableView!
     
     @IBAction func onLogout(_ sender: Any) {
@@ -26,7 +29,13 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         tweetTableView.delegate = self
 //        tweetTableView.rowHeight = UITableViewAutomaticDimension
 //        tweetTableView.estimatedRowHeight = 400
+        
 
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "onRefresh", for: UIControlEvents.valueChanged)
+        tweetTableView.insertSubview(refreshControl, at: 0)
+        
+        
         TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
             for tweet in tweets {
                 print(tweet.text!)
@@ -37,6 +46,34 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             print(error)
         })
 
+    }
+    
+    func onRefresh() {
+        TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
+            for tweet in tweets {
+                print(tweet.text!)
+            }
+            self.tweets = tweets
+            self.tweetTableView.reloadData()
+        }, failure: { (error: Error) in
+            print(error)
+        })
+        self.refreshControl.endRefreshing()
+    }
+    
+    
+    func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
+            for tweet in tweets {
+                print(tweet.text!)
+            }
+            self.tweets = tweets
+            self.tweetTableView.reloadData()
+            refreshControl.endRefreshing()
+        }, failure: { (error: Error) in
+            print(error)
+        })
+        
     }
 
     override func didReceiveMemoryWarning() {
