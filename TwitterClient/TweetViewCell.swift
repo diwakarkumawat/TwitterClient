@@ -26,6 +26,15 @@ class TweetViewCell: UITableViewCell {
         // Initialization code
         profileImageView.layer.cornerRadius = 4
         profileImageView.clipsToBounds = true
+        
+//        post.preferredMaxLayoutWidth = post.frame.size.width + 100
+        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+//        post.preferredMaxLayoutWidth = post.frame.size.width + 100
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
