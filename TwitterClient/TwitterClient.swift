@@ -118,6 +118,16 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
     }
     
+    func postTweet(message: String) {
+        print("Twitterclient -> postTweet")
+        print(message)
+        post("https://api.twitter.com/1.1/statuses/update.json?status=\(message)", parameters: nil, success: { (operation: URLSessionDataTask, response: Any?) -> Void in
+            print("Successfully Tweeted")
+        }) { (operation: URLSessionDataTask?, error: Error) -> Void in
+            print("Failed to Tweet")
+        }
+    }
+    
     func currentAccount(success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
         TwitterClient.sharedInstance?.get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response:Any?) in
             //print("account: \(response)")
