@@ -107,6 +107,17 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+
+    //https://api.twitter.com/1.1/statuses/retweet/:id.json
+    func retweet(id: Int) {
+        print("Twitterclient -> retweet")
+        post("https://api.twitter.com/1.1/statuses/retweet/\(id).json", parameters: nil, success: { (operation: URLSessionDataTask, response: Any?) -> Void in
+            print("Successfully retweeted")
+        }) { (operation: URLSessionDataTask?, error: Error) -> Void in
+            print("Failed to retweet")
+        }
+    }
+    
     func currentAccount(success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
         TwitterClient.sharedInstance?.get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response:Any?) in
             //print("account: \(response)")

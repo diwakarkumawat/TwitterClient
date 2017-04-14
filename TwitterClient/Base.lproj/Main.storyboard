@@ -98,6 +98,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EBV-fZ-AMn">
                                                     <rect key="frame" x="225" y="110" width="36" height="22"/>
                                                     <state key="normal" title="retweet" image="retweet.png"/>
+                                                    <connections>
+                                                        <action selector="retweetAction:" destination="01Y-qk-9Le" eventType="touchUpInside" id="JkM-Xf-Q1S"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJW-Av-YnZ">
                                                     <rect key="frame" x="275" y="109" width="41" height="22"/>

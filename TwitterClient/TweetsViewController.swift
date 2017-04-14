@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TweetViewCellRetweetDelegate {
 
 
     var tweets: [Tweet]!
@@ -21,6 +21,12 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     @IBAction func onLogout(_ sender: Any) {
         TwitterClient.sharedInstance?.logout()
     }
+    
+    func retweet(tweetViewCell: TweetViewCell) {
+        print("TweetsViewController -> retweet")
+        TwitterClient.sharedInstance?.retweet(id: tweetViewCell.tweet!.id!)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +102,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tweetTableView.dequeueReusableCell(withIdentifier: "TweetViewCell", for: indexPath) as! TweetViewCell
+        
+        cell.retweetDelegate = self
         
         let tweet = tweets![indexPath.row] as Tweet
 

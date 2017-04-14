@@ -8,8 +8,12 @@
 
 import UIKit
 
-class TweetViewCell: UITableViewCell {
+protocol TweetViewCellRetweetDelegate : class {
+    func retweet(tweetViewCell: TweetViewCell)
+}
 
+
+class TweetViewCell: UITableViewCell {
 
     var tweet: Tweet!    
     
@@ -20,6 +24,9 @@ class TweetViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     
     @IBOutlet weak var post: UILabel!
+    
+    weak var retweetDelegate: TweetViewCellRetweetDelegate?
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,6 +43,13 @@ class TweetViewCell: UITableViewCell {
 //        post.preferredMaxLayoutWidth = post.frame.size.width + 100
         
     }
+    
+    
+    @IBAction func retweetAction(_ sender: Any) {
+        print("TweetViewCell -> retweet")
+        retweetDelegate?.retweet(tweetViewCell: self)
+    }
+    
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
