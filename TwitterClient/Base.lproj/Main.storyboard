@@ -258,12 +258,6 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nQi-4I-Hdm">
-                                        <rect key="frame" x="26" y="182" width="333" height="90"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXC-P8-26G">
                                         <rect key="frame" x="272" y="100" width="87" height="30"/>
                                         <constraints>
@@ -275,23 +269,27 @@
                                             <action selector="sendTweet:" destination="xKc-CP-ULe" eventType="touchUpInside" id="RxL-gg-Z3r"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ADa-oj-1WZ">
+                                        <rect key="frame" x="26" y="167" width="311" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="0Q7-iX-zqZ" firstAttribute="leading" secondItem="08P-KM-TLt" secondAttribute="trailing" constant="10" id="3Xe-lp-mHx"/>
                                     <constraint firstItem="08P-KM-TLt" firstAttribute="top" secondItem="rKA-EO-ccR" secondAttribute="top" constant="34" id="3k3-To-rY6"/>
                                     <constraint firstItem="zXC-P8-26G" firstAttribute="top" secondItem="2qG-4A-q6U" secondAttribute="bottom" constant="8" symbolic="YES" id="7FS-wF-dSJ"/>
-                                    <constraint firstItem="nQi-4I-Hdm" firstAttribute="top" secondItem="08P-KM-TLt" secondAttribute="bottom" constant="43" id="8Nf-Ad-6Kc"/>
                                     <constraint firstItem="0Q7-iX-zqZ" firstAttribute="top" secondItem="rKA-EO-ccR" secondAttribute="top" constant="42" id="ArD-R1-I5P"/>
+                                    <constraint firstItem="ADa-oj-1WZ" firstAttribute="trailing" secondItem="2qG-4A-q6U" secondAttribute="trailing" id="B6l-Qk-oHE"/>
                                     <constraint firstItem="2qG-4A-q6U" firstAttribute="top" secondItem="0Q7-iX-zqZ" secondAttribute="bottom" constant="8" symbolic="YES" id="Kc6-LE-4Mr"/>
                                     <constraint firstItem="0Q7-iX-zqZ" firstAttribute="leading" secondItem="2qG-4A-q6U" secondAttribute="leading" id="TBd-nO-Kah"/>
                                     <constraint firstItem="0Q7-iX-zqZ" firstAttribute="trailing" secondItem="2qG-4A-q6U" secondAttribute="trailing" id="W37-qi-aUP"/>
+                                    <constraint firstItem="ADa-oj-1WZ" firstAttribute="leading" secondItem="08P-KM-TLt" secondAttribute="leading" id="b9K-yp-EBt"/>
                                     <constraint firstAttribute="trailing" secondItem="0Q7-iX-zqZ" secondAttribute="trailing" constant="38" id="lWv-4V-ohM"/>
-                                    <constraint firstAttribute="trailing" secondItem="nQi-4I-Hdm" secondAttribute="trailing" constant="16" id="lyJ-Mf-buE"/>
-                                    <constraint firstItem="08P-KM-TLt" firstAttribute="leading" secondItem="nQi-4I-Hdm" secondAttribute="leading" id="nWS-JZ-aao"/>
-                                    <constraint firstAttribute="bottom" secondItem="nQi-4I-Hdm" secondAttribute="bottom" constant="38" id="ouk-Qm-wvR"/>
+                                    <constraint firstItem="ADa-oj-1WZ" firstAttribute="top" secondItem="08P-KM-TLt" secondAttribute="bottom" constant="28" id="nCp-AF-0Zf"/>
                                     <constraint firstItem="08P-KM-TLt" firstAttribute="leading" secondItem="rKA-EO-ccR" secondAttribute="leading" constant="26" id="ree-WV-7Oy"/>
-                                    <constraint firstItem="nQi-4I-Hdm" firstAttribute="trailing" secondItem="zXC-P8-26G" secondAttribute="trailing" id="xWo-6U-lbm"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -301,7 +299,7 @@
                         <outlet property="handle" destination="2qG-4A-q6U" id="O2T-Yj-H0r"/>
                         <outlet property="myName" destination="0Q7-iX-zqZ" id="gy0-i6-zav"/>
                         <outlet property="profileImageView" destination="08P-KM-TLt" id="yeS-6h-vwn"/>
-                        <outlet property="tweetText" destination="nQi-4I-Hdm" id="DDh-uN-5kw"/>
+                        <outlet property="tweetText" destination="ADa-oj-1WZ" id="gb5-5b-TOb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Vh-JW-DFO" userLabel="First Responder" sceneMemberID="firstResponder"/>

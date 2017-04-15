@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewTweetViewController: UIViewController, UITextViewDelegate {
+class NewTweetViewController: UIViewController, UITextFieldDelegate {
     
     var currentUser: User?
     
@@ -19,7 +19,10 @@ class NewTweetViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var profileImageView: UIImageView!
     
-    @IBOutlet weak var tweetText: UITextView!
+    @IBOutlet weak var tweetText: UITextField!
+    
+    
+//    @IBOutlet weak var tweetText: UITextView!
     
     @IBAction func onTweet(_ sender: Any) {
         print("onTweetTap")
@@ -35,7 +38,7 @@ class NewTweetViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //tweetText.delegate = self
+        tweetText.delegate = self
         //currentUser =  User.currentUser
         currentUser = User._currentUser
         myName.text = (currentUser?.name! as! String) as String
