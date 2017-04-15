@@ -17,6 +17,8 @@
 		A069810E1E9E065400201F4B /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069810D1E9E065400201F4B /* Tweet.swift */; };
 		A06981101E9E0FDD00201F4B /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069810F1E9E0FDD00201F4B /* TwitterClient.swift */; };
 		A06981121E9E1EF200201F4B /* TweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06981111E9E1EF200201F4B /* TweetsViewController.swift */; };
+		A0D93C241EA189DE000F0EE0 /* NewTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D93C231EA189DE000F0EE0 /* NewTweetViewController.swift */; };
+		A0D93C261EA1A35A000F0EE0 /* TweetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D93C251EA1A35A000F0EE0 /* TweetDetailViewController.swift */; };
 		A0E567A21E9F616F0041D946 /* favorite_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = A0E5679A1E9F616F0041D946 /* favorite_hover.png */; };
 		A0E567A31E9F616F0041D946 /* favorite_on.png in Resources */ = {isa = PBXBuildFile; fileRef = A0E5679B1E9F616F0041D946 /* favorite_on.png */; };
 		A0E567A41E9F616F0041D946 /* favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = A0E5679C1E9F616F0041D946 /* favorite.png */; };
@@ -42,6 +44,8 @@
 		A069810D1E9E065400201F4B /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		A069810F1E9E0FDD00201F4B /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		A06981111E9E1EF200201F4B /* TweetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsViewController.swift; sourceTree = "<group>"; };
+		A0D93C231EA189DE000F0EE0 /* NewTweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTweetViewController.swift; sourceTree = "<group>"; };
+		A0D93C251EA1A35A000F0EE0 /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailViewController.swift; sourceTree = "<group>"; };
 		A0E5679A1E9F616F0041D946 /* favorite_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favorite_hover.png; path = Assets.xcassets/favorite_hover.png; sourceTree = "<group>"; };
 		A0E5679B1E9F616F0041D946 /* favorite_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favorite_on.png; path = Assets.xcassets/favorite_on.png; sourceTree = "<group>"; };
 		A0E5679C1E9F616F0041D946 /* favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favorite.png; path = Assets.xcassets/favorite.png; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 			children = (
 				A06981071E9DF02700201F4B /* LoginViewController.swift */,
 				A06981111E9E1EF200201F4B /* TweetsViewController.swift */,
+				A0D93C231EA189DE000F0EE0 /* NewTweetViewController.swift */,
+				A0D93C251EA1A35A000F0EE0 /* TweetDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -299,6 +305,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A069810C1E9E064700201F4B /* User.swift in Sources */,
+				A0D93C241EA189DE000F0EE0 /* NewTweetViewController.swift in Sources */,
+				A0D93C261EA1A35A000F0EE0 /* TweetDetailViewController.swift in Sources */,
 				A069810E1E9E065400201F4B /* Tweet.swift in Sources */,
 				A06981081E9DF02700201F4B /* LoginViewController.swift in Sources */,
 				A06981121E9E1EF200201F4B /* TweetsViewController.swift in Sources */,

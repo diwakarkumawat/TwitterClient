@@ -106,7 +106,6 @@ class TwitterClient: BDBOAuth1SessionManager {
             failure(error)
         })
     }
-    
 
     //https://api.twitter.com/1.1/statuses/retweet/:id.json
     func retweet(id: Int) {

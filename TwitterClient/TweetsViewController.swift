@@ -18,6 +18,16 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var tweetTableView: UITableView!
     
+    
+    @IBAction func onNewTweet(_ sender: Any) {
+        print("New Tweet")
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "NewTweetViewController")
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func onLogout(_ sender: Any) {
         TwitterClient.sharedInstance?.logout()
     }
@@ -119,14 +129,19 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let cell = sender as! TweetViewCell
+        let indexPath = tweetTableView.indexPath(for: cell)
+        let tweet = tweets![(indexPath?.row)!]
+        
+        let detailViewController = segue.destination as! TweetDetailViewController
+        detailViewController.tweetDetail = tweet
+        
     }
-    */
 
 }
