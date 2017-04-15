@@ -13,18 +13,27 @@ class User: NSObject {
     var name: NSString?
     var screenName: NSString?
     var profileImageUrl: NSURL?
+    var profileUrl: NSURL?
     var tagline: NSString?
     var userDict: NSDictionary
     
     init(dict: NSDictionary) {
         self.userDict = dict
+        print(dict)
         name = dict["name"] as? String as NSString?
         screenName = dict["screen_name"] as? NSString
         tagline = dict["description"] as? NSString
-        let profileUrl = dict["profile_image_url_https"] as? NSString
-        if let profileUrlString = profileUrl {
-            profileImageUrl = URL(string: profileUrlString as String) as NSURL?
+        var profileImageUrlStr = dict["profile_image_url_https"] as? NSString
+        var profileUrlStr = dict["profile_image_url"] as? NSString
+        
+        if let _profileUrlString = profileImageUrlStr {
+            profileImageUrl = URL(string: _profileUrlString as String) as NSURL?
         }
+        
+        if let _profileUrlStr = profileUrlStr {
+            profileUrl = URL(string: _profileUrlStr as String) as NSURL?
+        }
+
     }
     
     static var _currentUser: User?

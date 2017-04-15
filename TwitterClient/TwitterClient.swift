@@ -25,29 +25,6 @@ class TwitterClient: BDBOAuth1SessionManager {
             print("got access token")
             
             
-            /*
-            client?.homeTimeline(success: { (tweets: [Tweet]) in
-                for tweet in tweets {
-                    print(tweet.text!)
-                }
-            }, failure: { (error: Error) in
-                print(error)
-            })
-            client?.currentAccount()
-            */
-            
-            /*
-             TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
-             for tweet in tweets {
-             print(tweet.text!)
-             }
-             self.tweets = tweets
-             }, failure: { (error: Error) in
-             print(error)
-             })
- 
-            */
-
             self.currentAccount(success: { (user) in
                 User.currentUser = user
                 self.loginSuccess?()

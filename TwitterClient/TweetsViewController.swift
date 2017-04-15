@@ -54,7 +54,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
         TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
             for tweet in tweets {
-                print(tweet.text!)
+                //print(tweet.text!)
             }
             self.tweets = tweets
             self.tweetTableView.reloadData()
