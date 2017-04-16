@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewTweetViewController: UIViewController, UITextFieldDelegate {
+class NewTweetViewController: UIViewController {
     
     var currentUser: User?
     
@@ -19,26 +19,31 @@ class NewTweetViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var profileImageView: UIImageView!
     
-    @IBOutlet weak var tweetText: UITextField!
+    @IBOutlet weak var tweetText: UITextView!
     
-    
-//    @IBOutlet weak var tweetText: UITextView!
-    
-    @IBAction func onTweet(_ sender: Any) {
-        print("onTweetTap")
-        print(tweetText.text!)
-        TwitterClient.sharedInstance?.postTweet(message: tweetText.text!)
+    @IBAction func onTweetButton(_ sender: Any) {
+                    print("onTweetTap")
+        
+        if (tweetText.text != nil) {
+            let messageToSend = tweetText.text!
+            TwitterClient.sharedInstance?.postTweet(message: messageToSend)
+        }
+        
+        tweetText.text = ""
+        
+        dismiss(animated: true, completion: nil)
     }
     
     
-//    func textViewDidBeginEditing(textView: UITextView) {
-//        //tweetText.text = ""
-//    }
+    @IBAction func onCancelButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tweetText.delegate = self
+        //tweetText.delegate = self
         //currentUser =  User.currentUser
         currentUser = User._currentUser
         myName.text = (currentUser?.name! as! String) as String

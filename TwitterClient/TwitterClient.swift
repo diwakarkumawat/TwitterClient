@@ -97,7 +97,14 @@ class TwitterClient: BDBOAuth1SessionManager {
     func postTweet(message: String) {
         print("Twitterclient -> postTweet")
         print(message)
-        post("https://api.twitter.com/1.1/statuses/update.json?status=\(message)", parameters: nil, success: { (operation: URLSessionDataTask, response: Any?) -> Void in
+        var encodedMessage = message.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        print(encodedMessage)
+        var params = NSDictionary()
+        params = ["status" : message]
+        print("https://api.twitter.com/1.1/statuses/update.json?status=\(encodedMessage!)")
+        post("https://api.twitter.com/1.1/statuses/update.json?status=\(encodedMessage!)",
+        //post("https://api.twitter.com/1.1/statuses/update.json",
+        parameters: nil, success: { (operation: URLSessionDataTask, response: Any?) -> Void in
             print("Successfully Tweeted")
         }) { (operation: URLSessionDataTask?, error: Error) -> Void in
             print("Failed to Tweet")
