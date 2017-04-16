@@ -13,7 +13,7 @@ class TwitterClient: BDBOAuth1SessionManager {
 
     static let USER_LOGOUT = "UserLogOut"
     
-    static let sharedInstance = TwitterClient(baseURL: NSURL(string: "https://api.twitter.com")! as URL!, consumerKey: "d7ecFpPfPSBNWBXUN5FJcYSsuM", consumerSecret: "ieyKr9IeYmpRrGBMivlnd66Cvy0mESsGJt8DURBJlR2ZTdSfU3f")
+    static let sharedInstance = TwitterClient(baseURL: NSURL(string: "https://api.twitter.com")! as URL!, consumerKey: "7ecFpPfPSBNWBXUN5FJcYSsuM", consumerSecret: "eyKr9IeYmpRrGBMivlnd66Cvy0mESsGJt8DURBJlR2ZTdSfU3f")
     
     var loginSuccess: (() -> ())?
     var loginFailure: ((Error) -> ())?
