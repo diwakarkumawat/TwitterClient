@@ -16,6 +16,10 @@ class User: NSObject {
     var profileUrl: NSURL?
     var tagline: NSString?
     var userDict: NSDictionary
+    var followers: Int?
+    var friendsCount: Int?
+    var profileBGImageUrl: NSURL?
+    var retweetCount: Int?
     
     init(dict: NSDictionary) {
         self.userDict = dict
@@ -34,6 +38,16 @@ class User: NSObject {
             profileUrl = URL(string: _profileUrlStr as String) as NSURL?
         }
 
+        followers = dict["followers_count"] as? Int
+        friendsCount = dict["friends_count"] as? Int
+        
+        retweetCount = dict["statuses_count"] as? Int
+        
+        var profileBGImageUrlStr = dict["profile_background_image_url"] as? NSString
+        if let _profileBGImageUrlStr = profileBGImageUrlStr {
+            profileBGImageUrl = URL(string: _profileBGImageUrlStr as String) as NSURL?
+        }
+        
     }
     
     static var _currentUser: User?
